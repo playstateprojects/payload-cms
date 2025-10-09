@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'push-notifications': PushNotification;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,6 +78,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'push-notifications': PushNotificationsSelect<false> | PushNotificationsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -86,7 +88,7 @@ export interface Config {
   };
   globals: {};
   globalsSelect: {};
-  locale: null;
+  locale: 'en' | 'fr' | 'de';
   user: User & {
     collection: 'users';
   };
@@ -153,8 +155,16 @@ export interface Media {
   filesize?: number | null;
   width?: number | null;
   height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "push-notifications".
+ */
+export interface PushNotification {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -170,6 +180,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'push-notifications';
+        value: number | PushNotification;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -250,8 +264,15 @@ export interface MediaSelect<T extends boolean = true> {
   filesize?: T;
   width?: T;
   height?: T;
-  focalX?: T;
-  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "push-notifications_select".
+ */
+export interface PushNotificationsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

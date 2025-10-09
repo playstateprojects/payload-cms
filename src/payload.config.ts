@@ -28,6 +28,10 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  localization: {
+    locales: ['en', 'fr', 'de'], // required
+    defaultLocale: 'de', // required
+  },
   collections: [Users, Media, PushNotifications],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
