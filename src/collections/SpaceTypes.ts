@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 import { v4 as uuid } from 'uuid'
 import { aiLocalizeCollection } from '../hooks/aiLocalize'
 
