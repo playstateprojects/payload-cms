@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     'push-notifications': PushNotification;
     'space-types': SpaceType;
+    articles: Article;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +82,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'push-notifications': PushNotificationsSelect<false> | PushNotificationsSelect<true>;
     'space-types': SpaceTypesSelect<false> | SpaceTypesSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -194,6 +196,24 @@ export interface SpaceType {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: number;
+  title: string;
+  /**
+   * Auto-filled from Title if left blank.
+   */
+  slug?: string | null;
+  heroImage?: (number | null) | Media;
+  publishDate?: string | null;
+  author?: string | null;
+  reviewStatus?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -214,6 +234,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'space-types';
         value: number | SpaceType;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: number | Article;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -315,6 +339,20 @@ export interface SpaceTypesSelect<T extends boolean = true> {
   description?: T;
   sort?: T;
   active?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  heroImage?: T;
+  publishDate?: T;
+  author?: T;
+  reviewStatus?: T;
   updatedAt?: T;
   createdAt?: T;
 }
