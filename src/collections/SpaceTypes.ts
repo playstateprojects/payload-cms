@@ -1,5 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { v4 as uuid } from 'uuid'
 import { aiLocalizeCollection } from '../hooks/aiLocalize'
 
 export const SpaceTypes: CollectionConfig = {
@@ -73,7 +72,7 @@ export const SpaceTypes: CollectionConfig = {
   hooks: {
     beforeValidate: [
       ({ data }) => {
-        if (!data.stableId) data.stableId = uuid()
+        if (!data.stableId) data.stableId = crypto.randomUUID()
       },
     ],
     beforeChange: [
