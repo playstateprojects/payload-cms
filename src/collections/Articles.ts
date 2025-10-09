@@ -49,6 +49,21 @@ export const Articles: CollectionConfig = {
       relationTo: 'media', // ensure you have a Media collection with uploads enabled
       localized: false,
     },
+    // Intro / Teaser — localized rich text
+    {
+      name: 'intro',
+      label: 'Intro / Teaser',
+      type: 'richText',
+      localized: true,
+    },
+
+    // Body — localized rich text
+    {
+      name: 'body',
+      label: 'Body',
+      type: 'richText',
+      localized: true,
+    },
 
     // Publish date — NOT localized
     {
@@ -120,10 +135,9 @@ export const Articles: CollectionConfig = {
           maxTokens: 300,
         },
         {
-          fields: ['label', 'description'], // the localized fields to fill
+          fields: ['body', 'intro', 'title'], // the localized fields to fill
           sourceLocale: 'en', // change if your default is different
           // targetLocales: ['de','fr','it'],       // or omit to use all configured except source
-          guardFlagField: 'autoLocalize', // only runs when true
         },
       ),
     ],

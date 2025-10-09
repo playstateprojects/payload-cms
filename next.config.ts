@@ -1,5 +1,4 @@
 import { withPayload } from '@payloadcms/next/withPayload'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -11,10 +10,6 @@ const nextConfig = {
       '.mjs': ['.mts', '.mjs'],
     }
 
-    // Add MiniCssExtractPlugin
-    webpackConfig.plugins.push(new MiniCssExtractPlugin())
-
-    
     return webpackConfig
   },
 }

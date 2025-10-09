@@ -206,6 +206,36 @@ export interface Article {
    */
   slug?: string | null;
   heroImage?: (number | null) | Media;
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  body?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   publishDate?: string | null;
   author?: string | null;
   reviewStatus?: string | null;
@@ -350,6 +380,8 @@ export interface ArticlesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   heroImage?: T;
+  intro?: T;
+  body?: T;
   publishDate?: T;
   author?: T;
   reviewStatus?: T;
