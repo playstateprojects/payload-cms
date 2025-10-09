@@ -11,6 +11,7 @@ import { r2Storage } from '@payloadcms/storage-r2'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { PushNotifications } from './collections/PushNotifications'
+import { SpaceTypes } from './collections/SpaceTypes'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -32,7 +33,7 @@ export default buildConfig({
     locales: ['en', 'fr', 'de'], // required
     defaultLocale: 'de', // required
   },
-  collections: [Users, Media, PushNotifications],
+  collections: [Users, Media, PushNotifications, SpaceTypes],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
